@@ -3,7 +3,7 @@
 # STATUS-PLUGIN
 
 - 一个适用于 [Yunzai 系列机器人框架](https://github.com/yhArcadia/Yunzai-Bot-plugins-index) 的系统状态查询插件
-- 有着更加精简，美观和超超超超超可爱的 UI 和的风格，并且你可以自定义头图
+- 有着更加精简，美观的 UI 和的风格，并且你可以自定义头图
 
 ## 安装插件
 
