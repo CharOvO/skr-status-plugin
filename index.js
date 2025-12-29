@@ -31,3 +31,4 @@ for (let i in files) {
 logger.info(logger.green("- SKR-STATUS-PLUGIN 载入成功"));
 logger.info(logger.magenta("欢迎加入交流群(...)"));
 
+export { apps };
