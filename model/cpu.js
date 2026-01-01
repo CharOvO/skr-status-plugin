@@ -4,7 +4,7 @@ import si from 'systeminformation'
 
 /**
  * 获取cpu型号
- * @returns {Promise<Object>} // 包含
+ * @returns {Promise<Object>} // 包含 cpu型号 核心数 负载 频率 温度 的对象
  */
 export async function getCpuInfo() {
     try {

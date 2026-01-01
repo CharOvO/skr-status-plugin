@@ -1,5 +1,6 @@
 import * as cpu from '../model/cpu.js'
 import * as system from '../model/system.js'
+import * as memory from '../model/memory.js'
 
 
 export class skr_status extends plugin{
@@ -31,20 +32,25 @@ export class skr_status extends plugin{
 
     async status(e) {
         const cpuInfo = await cpu.getCpuInfo();
-        const systemInfo = system.getSystemIofo();
+        const systemInfo = await system.getSystemIofo();
+        const memoryInfo = await memory.getMemoryInfo();
+
         e.reply([
-            `💻 CPU信息：`,
+            `🥰 CPU信息：`,
             `  型号：${cpuInfo.name}`,
             `  核心：${cpuInfo.cores}`,
             `  架构：${cpuInfo.arch}`,
-            `📊 CPU负载：`,
+            `🌸 CPU负载：`,
             `  当前负载：${cpuInfo.load}`,
             `  频率：${cpuInfo.speed}`,
             `  温度: ${cpuInfo.temp}`,
-            `🖥️ 系统信息：`,
-            `  类型：${systemInfo.type}`,
-            `  版本：${systemInfo.release}`,
-            `  运行时间：${systemInfo.upTime}`
+            `✨ 系统信息：`,
+            `  主机名: ${systemInfo.hostname}`,
+            `  内核：${systemInfo.platform}`,
+            `  发行版：${systemInfo.distro}`,
+            `  运行时间：${systemInfo.upTime}`,
+            `😞 内存占用：`,
+            `  ${memoryInfo.used}/${memoryInfo.total}`
         ].join('\n'), false, { at: true });
     }
 
