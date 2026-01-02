@@ -1,7 +1,2 @@
-export async function getCpuInfo() {
-//     try {
-//         const info = si.get({
-//             cpu
-//         });
-//     }
-// } 
+        total: total,
+            used: uesd

@@ -1,4 +1,4 @@
-import os from 'os';
+import os from 'node:os';
 import si from 'systeminformation'
 
 
@@ -19,7 +19,7 @@ export async function getCpuInfo() {
         cpu.load = `${info.currentLoad.currentLoad.toFixed(2)}%`
         cpu.speed = `${info.cpu.speed}GHz`
         if (info.cpuTemperature.main === null) {
-            logger.error("获取cpu温度失败!");
+            logger.error("获取cpu温度失败!",);
             cpu.temp = '0℃';
         } else {
             cpu.temp = `${info.cpuTemperature.main}℃`;
@@ -32,7 +32,7 @@ export async function getCpuInfo() {
         return cpu;  
         
     } catch (error) {
-        logger.error("获取cpu信息失败!");
+        logger.error("获取cpu信息失败!",error);
 
         return {
             name: '未知',

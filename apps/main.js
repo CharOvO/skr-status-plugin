@@ -1,6 +1,7 @@
-import * as cpu from '../model/cpu.js'
-import * as system from '../model/system.js'
-import * as memory from '../model/memory.js'
+import * as cpu from '../model/cpu.js';
+import * as system from '../model/system.js';
+import * as memory from '../model/memory.js';
+import * as disk from '../model/disk.js';
 
 
 export class skr_status extends plugin{
@@ -34,8 +35,8 @@ export class skr_status extends plugin{
         const cpuInfo = await cpu.getCpuInfo();
         const systemInfo = await system.getSystemIofo();
         const memoryInfo = await memory.getMemoryInfo();
-
-        e.reply([
+        const diskInfo = await disk.getDiskInfo();
+        let rmsg = [
             `🥰 CPU信息：`,
             `  型号：${cpuInfo.name}`,
             `  核心：${cpuInfo.cores}`,
@@ -50,8 +51,21 @@ export class skr_status extends plugin{
             `  发行版：${systemInfo.distro}`,
             `  运行时间：${systemInfo.upTime}`,
             `😞 内存占用：`,
-            `  ${memoryInfo.used}/${memoryInfo.total}`
-        ].join('\n'), false, { at: true });
+            `  ${memoryInfo.active}/${memoryInfo.total}`,
+            `🎉 硬盘信息：`,
+        ];
+        rmsg.push(`  容量概况：${diskInfo.used}/${diskInfo.total}`);
+        rmsg.push(`  硬盘信息：`)
+        for (let i = 0; i < diskInfo.disk.length; i++){
+            rmsg.push(`  ${diskInfo.disk[i].name}`);
+            rmsg.push(`  ${diskInfo.disk[i].type}`);
+            rmsg.push(`  ${diskInfo.disk[i].size}`);
+            rmsg.push(`  ${diskInfo.disk[i].temperature}`);
+
+        }
+        
+
+        e.reply(rmsg.join('\n'), false, { at: true });
     }
 
     async echo(e) {

@@ -1,4 +1,4 @@
-import os from 'os';
+import os from 'node:os';
 import si from 'systeminformation'
 
 /**
@@ -17,11 +17,11 @@ export async function getSystemIofo() {
         system.platform = `${info.osInfo.platform}`;
         system.distro = `${info.osInfo.distro}`;
         system.hostname = `${info.osInfo.hostname}`;
-        system.upTime = `服务器已正常运行${(uptime/86400).toFixed(0)}天${(uptime%86400/3600).toFixed(0)}小时${(uptime%86400%3600/60).toFixed(0)}分钟`
+        system.upTime = `服务器已正常运行${(uptime/(24*3600)).toFixed(0)}天${((uptime%(24*3600))/3600).toFixed(0)}小时${((uptime%(24*3600)%3600)/60).toFixed(0)}分钟`
 
         return system;
     } catch (error) {
-        logger.error("获取系统信息失败!");
+        logger.error("获取系统信息失败!",error);
 
         return {
             platform: '未知',

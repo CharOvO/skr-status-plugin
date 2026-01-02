@@ -9,19 +9,19 @@ export async function getMemoryInfo() {
     try {
         let memory = {};
         const info = await si.get({
-            mem: 'total,used'
+            mem: 'total,active'
         });
 
         memory.total = `${(info.mem.total / 1024 ** 3).toFixed(1)}GB`,
-        memory.used = `${(info.mem.used / 1024 ** 3).toFixed(1)}GB`
+        memory.active = `${(info.mem.active / 1024 ** 3).toFixed(1)}GB`
         
         return memory;
     } catch (error) {
-        logger.error("获取内存信息失败!");
+        logger.error("获取内存信息失败!",error);
 
         return {
             total: '0GB',
-            used: '0GB'
+            active: '0GB'
         }
     }
 }
