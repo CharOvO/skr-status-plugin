@@ -2,6 +2,7 @@ import * as cpu from '../model/cpu.js';
 import * as system from '../model/system.js';
 import * as memory from '../model/memory.js';
 import * as disk from '../model/disk.js';
+import * as network from '../model/network.js'
 
 
 export class skr_status extends plugin{
@@ -36,6 +37,7 @@ export class skr_status extends plugin{
         const systemInfo = await system.getSystemIofo();
         const memoryInfo = await memory.getMemoryInfo();
         const diskInfo = await disk.getDiskInfo();
+        const networkInfo = await network.getNetworkInfo();
         let rmsg = [
             `🥰 CPU信息：`,
             `  型号：${cpuInfo.name}`,
@@ -65,7 +67,11 @@ export class skr_status extends plugin{
             rmsg.push(` 温度: ${diskInfo.disk[i].temperature}`);
             rmsg.push(`--------------`);
         }
-        
+        rmsg.push(`✅ 网络状态：`);
+        rmsg.push(` ↑ ${networkInfo.txSpeed}`);
+        rmsg.push(` ↓ ${networkInfo.rxSpeed}`);
+        rmsg.push(`  总计上传: ${networkInfo.txTotal}`);
+        rmsg.push(` 总计下载: ${networkInfo.rxTotal}`);
 
         e.reply(rmsg.join('\n'), false, { at: true });
     }
