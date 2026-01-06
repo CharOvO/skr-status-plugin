@@ -10,7 +10,7 @@
 #### 1. 克隆仓库
 
 ```
-git clone https://github.com/CharOvO/skr-status-plugin.git ./skr-status-plugin
+git clone https://github.com/CharOvO/skr-status-plugin.git ./plugins/skr-status-plugin
 ```
 
 > [!NOTE]
