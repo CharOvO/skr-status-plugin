@@ -41,8 +41,8 @@ export default async function getNetworkInfo() {
         return {
             txSpeed: '0KB/S',
             rxSpeed: '0KB/S',
-            up: '0KB/S',
-            down: '0KB/S'
+            txTotal: '0KB/S',
+            rxTotal: '0KB/S'
         }
     }
     
